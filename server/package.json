@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon /YoutubeSearch/search.js"
+    "dev": "nodemon ./search.js"
   },
+  
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^2.0.22",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "react-router-dom": "^6.14.1",
     "youtube-player": "^5.6.0"
   }

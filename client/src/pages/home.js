@@ -1,11 +1,11 @@
-import { VideoPlayer } from "../components/Videoplayer"
+
 import { useState } from "react"
-import { Link } from 'react-router-dom';
 import axios from "axios"
 
 export const Home = () => {
     const [value, setValue] = useState("");
-    const [video, setVideo] = useState("");
+    const [video, setVideo] = useState([]);
+
     const handleChange = (event) => {
         event.preventDefault()
         setValue(event.target.value)
@@ -14,16 +14,18 @@ export const Home = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
         // Send the value result to search function on server
-        console.log({value})
+        console.log({ value })
         getData()
     }
 
-    const getData = async (req,res) => {
+    const getData = async () => {
         try {
-            const request = await axios.post("http://localhost:3001/videoInfo",{recipe : {value}});
-            const data = request.data // Response data
+            // POST request with body data {recipe:{value}} where {value} is user input
+            const request = await axios.post("http://localhost:3001/videoInfo",
+                { recipe: { value } });
+            const data = request.data // Response data will be a list of strings : [video_title,video_id,video_thumbnail_url]
             setVideo(data)
-            return <div>{video}</div>
+            console.log(data);
 
         } catch (err) {
             console.error(err)

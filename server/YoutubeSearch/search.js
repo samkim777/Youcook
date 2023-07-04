@@ -1,48 +1,76 @@
-require('dotenv').config()
-import {express} from "express";
-
-
-const YouTubePlayer = require('youtube-player');
-const player = YouTubePlayer('player-element-id'); // This is going to connect to react div that has this id?
+require('dotenv').config();
+const express = require("express")
 const { google } = require('googleapis');
 const apiKey = process.env.API_KEY; // Api Key
 const router = express.Router();
+const cors = require("cors");
+const app = express();
+const port = 3001;
+let res_list = [];
 
-router.post("/videoInfo", async (req,res) => {
+//use cors to allow cross origin resource sharing
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
+app.use(express.json())
+
+app.get("/videoInfo", (req, res) => {
+  console.log("ah shiet")
+  res.end();
+})
+
+app.post("/videoInfo", async (req, res) => {
   try {
-    const recipe = res.body.recipe
+    const foodName = req.body.recipe.value;
+    const recipe = await getRecipe(foodName);
+    console.log(recipe);
+    console.log("Sent! with requested word", foodName);
+    // res.json(recipe);
   } catch (err) {
-    console.error(err)
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
   }
+});
+
+
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`)
 })
 
 
-// Create a new YouTube instance
-const youtube = google.youtube({
-  version: 'v3',
-  auth: apiKey
-});
-
-// Define the search parameters
-const searchParams = {
-  part: 'snippet', // The snippet object contains basic details about the video, such as its title, description, and category.
-  q: {recipe}, // Replace with the search query
-  type: 'video' // Only get the video 
-};
-
-// Perform the search
-youtube.search.list(searchParams)
-  .then(response => {
-    const items = response.data.items;
-    items.forEach(item => {
-      console.log('Video Title:', item.snippet.title);
-      console.log('Video ID:', item.id.videoId);
-      console.log(item.snippet.thumbnails.high.url);
-      console.log('---------------------------');
+function getRecipe(food) {
+  return new Promise((resolve, reject) => {
+    const youtube = google.youtube({
+      version: 'v3',
+      auth: apiKey
     });
-  })
-  .catch(err => {
-    console.error('Error:', err);
+  
+    const searchParams = {
+      part: 'snippet',
+      q: food,
+      type: 'video'
+    };
+  
+    youtube.search.list(searchParams)
+      .then(response => {
+        const items = response.data.items;
+        const recipe = [];
+        for (let i = 0; i < items.length; i++) {
+          recipe.push(items[i].snippet.title);
+          console.log(items[i].snippet.title);
+        }
+        // Resolve the promise for recipe List
+        resolve(recipe);
+      })
+      .catch(err => {
+        console.error('Error:', err);
+        reject(err);
+      });
   });
+}
 
-  export {router as router}
+
+
