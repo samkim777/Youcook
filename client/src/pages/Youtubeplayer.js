@@ -1,14 +1,6 @@
-import { useState, useEffect } from "react";
 
 
-
-export const Youtubeplayer = () => {
-    const [videoIds, setvideoId] = useState([]);
-    let video_list = ["NBdtDhZ9ojs","SJ6dWuY_VlQ"]
-    useEffect(() => {
-        setvideoId(video_list);
-    }, [])
-
+export const Youtubeplayer = ({videoIds}) => {
     return (
         <div>
             {videoIds.map((videoId) =>
@@ -17,7 +9,6 @@ export const Youtubeplayer = () => {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen></iframe>
             )}
-
         </div>
     )
 

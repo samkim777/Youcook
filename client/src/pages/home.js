@@ -1,35 +1,43 @@
-
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
+import { Youtubeplayer } from "./Youtubeplayer";
+
 
 export const Home = () => {
     const [value, setValue] = useState("");
-    const [video, setVideo] = useState([]);
+    const [videos, setVideos] = useState([]);
 
     const handleChange = (event) => {
         event.preventDefault()
         setValue(event.target.value)
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        // Send the value result to search function on server
-        console.log({ value })
-        getData()
-    }
-
-    const getData = async () => {
         try {
-            // POST request with body data {recipe:{value}} where {value} is user input
-            const request = await axios.post("http://localhost:3001/videoInfo",
-                { recipe: { value } });
-            const data = request.data // Response data will be a list of strings : [video_title,video_id,video_thumbnail_url]
-            setVideo(data)
-            console.log(data);
-
+            const response = await getData();
+            setVideos(response);
         } catch (err) {
-            console.error(err)
+            console.error(err);
         }
+    }
+    useEffect(() => {
+    }, []);
+
+    const getData = () => {
+        return new Promise((resolve, reject) => {
+            axios.post("http://localhost:3001/videoInfo", { recipe: { value } })
+                .then(response => {
+                    const data = response.data;
+                    resolve(data);
+                    console.log(data);
+                }
+                )
+                .catch(err => {
+                    console.error(err);
+                    reject(err);
+                })
+        })
     }
     return (
         <div className="Home">
@@ -38,6 +46,7 @@ export const Home = () => {
                     <input type="text" value={value} onChange={handleChange}></input>
                 </label>
                 <button type="submit">Submit</button>
+                <Youtubeplayer videoIds={videos} />
             </form>
         </div>
     );

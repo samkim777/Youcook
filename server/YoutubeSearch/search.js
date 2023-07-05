@@ -1,12 +1,13 @@
 require('dotenv').config();
+
 const express = require("express")
 const { google } = require('googleapis');
 const apiKey = process.env.API_KEY; // Api Key
-const router = express.Router();
 const cors = require("cors");
 const app = express();
 const port = 3001;
-let res_list = [];
+const axios = require("axios");
+
 
 //use cors to allow cross origin resource sharing
 app.use(
@@ -25,15 +26,18 @@ app.get("/videoInfo", (req, res) => {
 app.post("/videoInfo", async (req, res) => {
   try {
     const foodName = req.body.recipe.value;
-    const recipe = await getRecipe(foodName);
+    const recipe = await getRecipe(foodName); // Get video titles
+    // Actually not sending anything
+    res.send(recipe);
     console.log(recipe);
     console.log("Sent! with requested word", foodName);
-    // res.json(recipe);
-  } catch (err) {
+  }
+  catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
 
 
 app.listen(port, () => {
@@ -47,19 +51,19 @@ function getRecipe(food) {
       version: 'v3',
       auth: apiKey
     });
-  
+
     const searchParams = {
       part: 'snippet',
       q: food,
       type: 'video'
     };
-  
+
     youtube.search.list(searchParams)
       .then(response => {
         const items = response.data.items;
         const recipe = [];
         for (let i = 0; i < items.length; i++) {
-          recipe.push(items[i].snippet.title);
+          recipe.push(items[i].id.videoId);
           console.log(items[i].snippet.title);
         }
         // Resolve the promise for recipe List
