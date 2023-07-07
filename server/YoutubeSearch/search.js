@@ -1,13 +1,17 @@
 require('dotenv').config();
 
+
 const express = require("express")
 const { google } = require('googleapis');
+const mongoose = require('mongoose');
 const apiKey = process.env.API_KEY; // Api Key
 const cors = require("cors");
 const app = express();
 const port = 3001;
-const axios = require("axios");
 
+
+// Connect to DB
+mongoose.connect(process.env.CRED);
 
 //use cors to allow cross origin resource sharing
 app.use(
@@ -18,10 +22,6 @@ app.use(
 );
 app.use(express.json())
 
-app.get("/videoInfo", (req, res) => {
-  console.log("ah shiet")
-  res.end();
-})
 
 app.post("/videoInfo", async (req, res) => {
   try {
