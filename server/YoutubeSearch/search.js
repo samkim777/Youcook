@@ -55,7 +55,9 @@ function getRecipe(food) {
     const searchParams = {
       part: 'snippet',
       q: food,
-      type: 'video'
+      type: 'video',
+      safeSearch: 'none',
+      maxResults: 10
     };
 
     youtube.search.list(searchParams)

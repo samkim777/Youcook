@@ -3,11 +3,11 @@
 export const Youtubeplayer = ({videoIds}) => {
     return (
         <div>
-            {videoIds.map((videoId) =>
-                <iframe width="560" height="315" src={`https://www.youtube.com/embed/${videoId}`}
-                    title="YouTube video player" frameborder="1"
+            {videoIds.map((videoId,index) =>
+                <iframe key= {index} width="560" height="315" src={`https://www.youtube.com/embed/${videoId}`}
+                    title="YouTube video player" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
+                    allowFullScreen></iframe>
             )}
         </div>
     )
