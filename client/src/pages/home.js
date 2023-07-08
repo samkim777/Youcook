@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
-import axios from "axios"
-import { Youtubeplayer } from "./Youtubeplayer";
+const { useEffect, useState } = require("react");
+const axios = require("axios");
+const { Youtubeplayer } = require("./Youtubeplayer");
 
 
 export const Home = () => {

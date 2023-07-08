@@ -1,7 +1,8 @@
-import { useState } from "react"
-import axios from "axios"
-import { useCookies } from "react-cookie"
-import { useNavigate } from "react-router-dom"
+const { useState } = require("react");
+const axios = require("axios");
+const { useCookies } = require("react-cookie");
+const { useNavigate } = require("react-router-dom");
+
 
 export const Auth = () => {
     return <div>

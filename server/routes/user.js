@@ -1,8 +1,8 @@
-import express from "express";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+const express = require("express");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const router = express.Router();
-import { UserModel } from "../models/Users";
+const { UserModel } = require("../models/Users");
 
 
 
@@ -38,18 +38,20 @@ router.post("/login", async (req,res) => {
 
 });
 
-export {router as userRouter};
+const userRouter = router;
+module.exports = userRouter;
 
-export const verifyToken = (req,res,next) => {
-    const authHeader = req.headers.authorization;
-    if (authHeader) {
-        jwt.verify(authHeader,"secret", (err) => {
-            if (err) {
-                return res.status(400);
-            }
-            next();
-        })
-    } else {
-        res.sendStatus(401);
-    }
-}
+
+// export const verifyToken = (req,res,next) => {
+//     const authHeader = req.headers.authorization;
+//     if (authHeader) {
+//         jwt.verify(authHeader,"secret", (err) => {
+//             if (err) {
+//                 return res.status(400);
+//             }
+//             next();
+//         })
+//     } else {
+//         res.sendStatus(401);
+//     }
+// }

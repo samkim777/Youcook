@@ -1,19 +1,21 @@
-import express from "express";
-import cors from "cors";
-import mongoose from "mongoose";
-import 'dotenv/config'
-import {userRouter} from './routes/users.js'
-
-
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+require('dotenv').config();
+const userRouter = require('./routes/user.js');
+const videoRouter = require('./routes/search.js');
 
 const app = express();
-// middleware
+
+// Middleware
 app.use(express.json());
 app.use(cors());
-app.use("/auth",userRouter)
+app.use("/auth", userRouter);
+app.use("/videoInfo", videoRouter);
 
-mongoose.connect(process.env.CRED)
+// Connect to DB
+mongoose.connect(process.env.CRED);
 
 app.listen(3001, () => {
-    console.log('Server started');
-})
+  console.log('Server started');
+});
