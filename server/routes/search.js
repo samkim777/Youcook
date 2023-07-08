@@ -1,29 +1,15 @@
 require('dotenv').config();
-
-
-const express = require("express")
+require('express');
 const { google } = require('googleapis');
-const mongoose = require('mongoose');
-const apiKey = process.env.API_KEY; // Api Key
-const cors = require("cors");
-const app = express();
 const port = 3001;
+const express = require('express');
+const router = express.Router();
 
 
-// Connect to DB
-mongoose.connect(process.env.CRED);
-
-//use cors to allow cross origin resource sharing
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-    credentials: true,
-  })
-);
-app.use(express.json())
 
 
-app.post("/videoInfo", async (req, res) => {
+
+router.post("/videoInfo", async (req, res) => {
   try {
     const foodName = req.body.recipe.value;
     const recipe = await getRecipe(foodName); // Get video titles
@@ -38,18 +24,34 @@ app.post("/videoInfo", async (req, res) => {
   }
 });
 
+const videoRouter = router;
+module.exports = videoRouter;
 
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`)
-})
+
+// app.post("/videoInfo", async (req, res) => {
+//   try {
+//     const foodName = req.body.recipe.value;
+//     const recipe = await getRecipe(foodName); // Get video titles
+//     // Actually not sending anything
+//     res.send(recipe);
+//     console.log(recipe);
+//     console.log("Sent! with requested word", foodName);
+//   }
+//   catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
+
+
 
 
 function getRecipe(food) {
   return new Promise((resolve, reject) => {
     const youtube = google.youtube({
       version: 'v3',
-      auth: apiKey
+      auth: process.env.API_KEY
     });
 
     const searchParams = {

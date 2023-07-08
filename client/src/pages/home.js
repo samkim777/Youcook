@@ -22,6 +22,7 @@ export const Home = () => {
         }
     }
     useEffect(() => {
+
     }, []);
 
     const getData = () => {
