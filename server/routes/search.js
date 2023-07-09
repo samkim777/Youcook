@@ -3,7 +3,7 @@ import { google } from "googleapis";
 import express from "express";
 
 const router = express.Router();
-dotenv.config();
+dotenv.config({ path: '../.env' });
 
 
 
@@ -13,7 +13,6 @@ router.post("/videoInfo", async (req, res) => {
   try {
     const foodName = req.body.recipe.value;
     const recipe = await getRecipe(foodName); // Get video titles
-    // Actually not sending anything
     res.send(recipe);
     console.log(recipe);
     console.log("Sent! with requested word", foodName);
@@ -23,25 +22,6 @@ router.post("/videoInfo", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
-export {router as videoRouter}
-
-
-
-// app.post("/videoInfo", async (req, res) => {
-//   try {
-//     const foodName = req.body.recipe.value;
-//     const recipe = await getRecipe(foodName); // Get video titles
-//     // Actually not sending anything
-//     res.send(recipe);
-//     console.log(recipe);
-//     console.log("Sent! with requested word", foodName);
-//   }
-//   catch (err) {
-//     console.error(err);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
 
 
 
@@ -63,8 +43,8 @@ function getRecipe(food) {
 
     youtube.search.list(searchParams)
       .then(response => {
-        const items = response.data.items;
         const recipe = [];
+        const items = response.data.items;
         for (let i = 0; i < items.length; i++) {
           recipe.push(items[i].id.videoId);
           console.log(items[i].snippet.title);
@@ -79,5 +59,4 @@ function getRecipe(food) {
   });
 }
 
-
-
+export { router as videoRouter }

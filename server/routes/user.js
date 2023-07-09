@@ -1,7 +1,7 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import {UserModel} from "../models/Users.js";
+import { UserModel } from "../models/Users.js";
 
 const router = express.Router();
 
@@ -25,6 +25,7 @@ router.post("/login", async (req, res) => {
     const user = await UserModel.findOne({ username });
     // User doesn't exist
     if (!user) {
+        alert("User or password incorrect");
         return res.status(404).json({ message: "User or password incorrect" });
     }
 
@@ -37,7 +38,7 @@ router.post("/login", async (req, res) => {
 
 });
 
-export {router as userRouter}
+export { router as userRouter }
 
 
 // export const verifyToken = (req,res,next) => {
