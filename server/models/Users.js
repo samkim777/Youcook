@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
     username: {type: String, required : true, unique : true},
@@ -6,4 +6,4 @@ const userSchema = new mongoose.Schema({
     savedVideos: [{type: mongoose.Schema.Types.ObjectId, ref: "videos"}]
 });
 
-module.exports = mongoose.model("users", userSchema);
+export const UserModel = mongoose.model("users", userSchema);

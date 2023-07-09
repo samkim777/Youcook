@@ -1,9 +1,9 @@
-require('dotenv').config();
-require('express');
-const { google } = require('googleapis');
-const port = 3001;
-const express = require('express');
+import dotenv from "dotenv";
+import { google } from "googleapis";
+import express from "express";
+
 const router = express.Router();
+dotenv.config();
 
 
 
@@ -24,8 +24,7 @@ router.post("/videoInfo", async (req, res) => {
   }
 });
 
-const videoRouter = router;
-module.exports = videoRouter;
+export {router as videoRouter}
 
 
 

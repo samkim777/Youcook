@@ -1,10 +1,11 @@
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-require('dotenv').config();
-const userRouter = require('./routes/user.js');
-const videoRouter = require('./routes/search.js');
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import {userRouter} from "./routes/user.js";
+import {videoRouter} from "./routes/search.js";
 
+dotenv.config();
 const app = express();
 
 // Middleware
@@ -17,5 +18,5 @@ app.use("/videoInfo", videoRouter);
 mongoose.connect(process.env.CRED);
 
 app.listen(3001, () => {
-  console.log('Server started');
+  console.log('Server started on port 3001');
 });
