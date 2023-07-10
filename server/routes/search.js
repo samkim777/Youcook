@@ -2,14 +2,15 @@ import dotenv from "dotenv";
 import { google } from "googleapis";
 import express from "express";
 
-const router = express.Router();
-dotenv.config({ path: '../.env' });
+const videoRouter = express.Router();
+dotenv.config({ path: "../.env" });
 
 
 
 
 
-router.post("/videoInfo", async (req, res) => {
+
+videoRouter.post("/", async (req, res) => {
   try {
     const foodName = req.body.recipe.value;
     const recipe = await getRecipe(foodName); // Get video titles
@@ -59,4 +60,4 @@ function getRecipe(food) {
   });
 }
 
-export { router as videoRouter }
+export default videoRouter;
