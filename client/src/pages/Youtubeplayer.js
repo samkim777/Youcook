@@ -1,7 +1,14 @@
+import axios from "axios";
+import {userID} from "../hooks/userID.js"
+
 export const Youtubeplayer = ({ videoIds }) => {
+  const myid = userID();
 
     const buttonHandler = (videoSrc) => (event) => {
         event.preventDefault();
+        axios.put("http://localhost:3001/videoInfo", {src : videoSrc, id : myid}); // Send save video request
+        // Should trigger an put request to save data
+        // So here should be where the logic is handled
         console.log("Current video source:", videoSrc);
       };
       
@@ -10,7 +17,7 @@ export const Youtubeplayer = ({ videoIds }) => {
         <div>
           {videoIds.map((videoId) => (
             <div key={videoId} className="video-container">
-                <button className="save-button" onClick={buttonHandler(videoId)}>Save video</button>
+                <button className="save-button" onClick={buttonHandler(`https://www.youtube.com/embed/${videoId}`)}>Save video</button>
               <iframe
                 width="560"
                 height="315"

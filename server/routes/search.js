@@ -1,11 +1,28 @@
 import dotenv from "dotenv";
 import { google } from "googleapis";
 import express from "express";
+import { UserModel } from "../models/Users.js";
+
 
 const videoRouter = express.Router();
 dotenv.config({ path: "../.env" });
 
 
+
+
+// Saving logic?
+videoRouter.put("/", async (req, res) => {
+  const user = await UserModel.findById(req.body.id); 
+  try {
+    if (user) {
+      user.savedVideos.push(req.body.src);
+      await user.save();
+    }
+  } catch (err) {
+    console.error(err);
+  }
+
+})
 
 
 
