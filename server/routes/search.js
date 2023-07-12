@@ -12,10 +12,12 @@ dotenv.config({ path: "../.env" });
 
 // Saving logic?
 videoRouter.put("/", async (req, res) => {
-  const user = await UserModel.findById(req.body.id); 
+  const user = await UserModel.findById(req.body.id);
   try {
     if (user) {
-      user.savedVideos.push(req.body.src);
+      if (!user.savedVideos.includes(req.body.src)) {
+        user.savedVideos.push(req.body.src);
+      }
       await user.save();
     }
   } catch (err) {
