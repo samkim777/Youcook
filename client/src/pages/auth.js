@@ -46,6 +46,7 @@ const Register = () => {
             alert("Registration completed")
         } catch (err) {
             console.error(err)
+            alert("User exists")
         }
     }
     return <Form username={username} setusername={setusername} password={password} setpassword={setpassword} label="Register"
