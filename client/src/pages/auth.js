@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 export const Auth = () => {
     return <div>
         <Login />
-        <Register />
+        {/* <Register /> */}
     </div>
 }
 
@@ -54,16 +54,19 @@ const Register = () => {
 const Form = ({ username, setusername, password, setpassword, label, onSubmit }) => {
     return <div className="auth-container">
         <form onSubmit={onSubmit}>
-            <h2> {label}</h2>
+            <h2 id="auth-label"> {label}</h2>
             <div className="form-group">
-                <label className = "usertext" htmlFor="username">Username</label>
-                <input type="text" id="username" value={username} onChange={(event) => { setusername(event.target.value) }}></input>
+                <label className="usertext" htmlFor="username">Username</label>
+                <input placeholder="username" type="text" id="username" value={username} onChange={(event) => { setusername(event.target.value) }}></input>
             </div>
             <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <input type="password" id="password" value={password} onChange={(event) => { setpassword(event.target.value) }}></input>
+                <input placeholder="password" type="password" id="password" value={password} onChange={(event) => { setpassword(event.target.value) }}></input>
             </div>
-            <button type="submit">{label}</button>
+            <div className="form-buttons">
+                <button id="auth-login" type="submit">{label}</button>
+                <button id="auth-register" type="button"> Register</button>
+            </div>
         </form>
     </div>
 }
