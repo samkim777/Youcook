@@ -1,5 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+
 
 
 export const Navbar = () => {
@@ -11,9 +14,9 @@ export const Navbar = () => {
     };
     return (
         <div className="navbar">
-            <Link style={{textDecoration: 'none'}} to="/">Home</Link>
-            <Link style={{textDecoration: 'none'}} to="/auth">Login</Link>
-            <Link style={{textDecoration: 'none'}} to="/saved">Saved Videos</Link>
+            <Link className={"link-styles"} to="/">Home</Link>
+            <Link className={"link-styles"} to="/auth">Login</Link>
+            <Link className={"link-styles"} to="/saved">Saved Videos</Link>
         </div>
     );
 };
