@@ -56,12 +56,12 @@ const Form = ({ username, setusername, password, setpassword, label, onSubmit })
         <form onSubmit={onSubmit}>
             <h2 id="auth-label"> {label}</h2>
             <div className="form-group">
-                <label className="usertext" htmlFor="username">Username</label>
-                <input placeholder="username" type="text" id="username" value={username} onChange={(event) => { setusername(event.target.value) }}></input>
+                <label className="usertext" htmlFor="username"></label>
+                <input placeholder="Username" type="text" id="username" value={username} onChange={(event) => { setusername(event.target.value) }}></input>
             </div>
             <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input placeholder="password" type="password" id="password" value={password} onChange={(event) => { setpassword(event.target.value) }}></input>
+                <label htmlFor="password"></label>
+                <input placeholder="Password" type="password" id="password" value={password} onChange={(event) => { setpassword(event.target.value) }}></input>
             </div>
             <div className="form-buttons">
                 <button id="auth-login" type="submit">{label}</button>

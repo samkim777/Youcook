@@ -11,9 +11,9 @@ export const Navbar = () => {
     };
     return (
         <div className="navbar">
-            <Link to="/">Home</Link>
-            <Link to="/auth">Login</Link>
-            <Link to="/saved">Saved Videos</Link>
+            <Link style={{textDecoration: 'none'}} to="/">Home</Link>
+            <Link style={{textDecoration: 'none'}} to="/auth">Login</Link>
+            <Link style={{textDecoration: 'none'}} to="/saved">Saved Videos</Link>
         </div>
     );
 };

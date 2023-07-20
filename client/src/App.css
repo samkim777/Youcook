@@ -11,8 +11,25 @@
 }
 
 #auth-login {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 4px;
+  width: 100%;
+  border: none;
+  padding: 2vh;
+  min-height: 40%;
   color: black;
   background: #e8e9ec;
+}
+
+#auth-register {
+  background: #2d3b55;
+  color: #fff;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 4px;
+  width: 100%;
+  border: none;
+  padding: 2vh;
+  min-height: 40%;
 }
 
 #auth-login:hover {
@@ -23,16 +40,6 @@
   background: #3c4d6d;
 }
 
-button {
-  background: #2d3b55;
-  color: #fff;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 4px;
-  width: 100%;
-  border: none;
-  padding: 2vh;
-  min-height: 40%;
-}
 
 button:hover {
   cursor: pointer;
@@ -70,10 +77,19 @@ input:focus {
   margin-left: 5%;
 }
 
-
-
-
-
 .iframe {
   border: 1px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 20px;
+  background-color: teal;
+  color: #ffffff;
+}
+
+Link {
+  text-decoration: none;
 }
