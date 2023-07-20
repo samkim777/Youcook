@@ -43,13 +43,11 @@ export const Home = () => {
     }
     return (
         <div className="Home">
-            <form onSubmit={handleSubmit}>
-                <label>Search Recipe:
-                    <input type="text" value={value} onChange={handleChange}></input>
-                </label>
-                <button type="submit">Submit</button>
+            <form id="home-search-form" onSubmit={handleSubmit}>
+                <input placeholder="Search Recipe" className="home-search" type="text" value={value} onChange={handleChange}></input>
+                <button id = "home-search-button" type="submit">Submit</button>
                 <Youtubeplayer videoIds={videos} />
-                
+
             </form>
         </div>
     );
