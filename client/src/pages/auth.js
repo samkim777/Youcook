@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -29,7 +29,7 @@ const Login = () => {
             console.error(err)
         }
     }
-    return <Form username={username} setusername={setusername} password={password} setpassword={setpassword} label="Login" onSubmit={onSubmit} />
+    return <Form username={username} setusername={setusername} password={password} setpassword={setpassword} label="Login" buttonlabel="Login" onSubmit={onSubmit} />
 }
 
 const Register = () => {
@@ -51,7 +51,7 @@ const Register = () => {
         onSubmit={onSubmit} />
 }
 
-const Form = ({ username, setusername, password, setpassword, label, onSubmit }) => {
+export const Form = ({ username, setusername, password, setpassword, label, buttonlabel, onSubmit }) => {
     return <div className="auth-container">
         <form onSubmit={onSubmit}>
             <h2 id="auth-label"> {label}</h2>
@@ -64,8 +64,8 @@ const Form = ({ username, setusername, password, setpassword, label, onSubmit })
                 <input placeholder="Password" type="password" id="password" value={password} onChange={(event) => { setpassword(event.target.value) }}></input>
             </div>
             <div className="form-buttons">
-                <button id="auth-login" type="submit">{label}</button>
-                <button id="auth-register" type="button"> Register</button>
+                <button id="auth-login" type="submit">{buttonlabel}</button>
+                <Link to="/register" id="auth-register"> Register</Link>
             </div>
         </form>
     </div>

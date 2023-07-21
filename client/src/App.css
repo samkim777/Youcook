@@ -30,6 +30,8 @@
   border: none;
   padding: 2vh;
   min-height: 40%;
+  text-decoration: none;
+  text-align: center;
 }
 
 #auth-login:hover {
@@ -127,7 +129,5 @@ input:focus {
   justify-content: center;
   min-width: 7vw;
   min-height: 5vh;
-
-
   cursor: pointer;
 }
