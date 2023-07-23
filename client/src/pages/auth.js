@@ -1,20 +1,20 @@
 import { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 
 
 export const Auth = () => {
-    return <div>
-        <Login />
-        {/* <Register /> */}
-    </div>
+    return (
+        <Login />)
 }
 
-const Login = () => {
+export const Login = () => {
     const [username, setusername] = useState("")
     const [password, setpassword] = useState("")
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -23,6 +23,7 @@ const Login = () => {
             })
             // Store user ID to local storage
             window.localStorage.setItem("userID", response.data.userID);
+
             // Navigate to homepage
             navigate("/")
         } catch (err) {
@@ -30,25 +31,6 @@ const Login = () => {
         }
     }
     return <Form username={username} setusername={setusername} password={password} setpassword={setpassword} label="Login" buttonlabel="Login" onSubmit={onSubmit} />
-}
-
-const Register = () => {
-    const [username, setusername] = useState("")
-    const [password, setpassword] = useState("")
-    const onSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            await axios.post("http://localhost:3001/auth/register", {
-                username, password,
-            })
-            alert("Registration completed")
-        } catch (err) {
-            console.error(err)
-            alert("User exists")
-        }
-    }
-    return <Form username={username} setusername={setusername} password={password} setpassword={setpassword} label="Register"
-        onSubmit={onSubmit} />
 }
 
 export const Form = ({ username, setusername, password, setpassword, label, buttonlabel, onSubmit }) => {
@@ -70,3 +52,5 @@ export const Form = ({ username, setusername, password, setpassword, label, butt
         </form>
     </div>
 }
+
+export default Auth
