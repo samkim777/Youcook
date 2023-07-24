@@ -2,12 +2,14 @@ import { Form } from "./auth";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 export const Registration = () => {
     return (
         <Register />
     )
 }
+
 
 
 const Register = () => {
@@ -30,3 +32,5 @@ const Register = () => {
     return <Form username={username} setusername={setusername} password={password} setpassword={setpassword} label="Register" buttonlabel="Create Account"
         onSubmit={onSubmit} />
 }
+
+export default Registration
