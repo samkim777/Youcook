@@ -3,12 +3,8 @@ import { google } from "googleapis";
 import express from "express";
 import { UserModel } from "../models/Users.js";
 
-
 const videoRouter = express.Router();
 dotenv.config({ path: "../.env" });
-
-
-
 
 // Saving logic
 videoRouter.put("/", async (req, res) => {
@@ -23,11 +19,7 @@ videoRouter.put("/", async (req, res) => {
   } catch (err) {
     console.error(err);
   }
-
-})
-
-
-
+});
 
 videoRouter.post("/", async (req, res) => {
   try {
@@ -36,33 +28,30 @@ videoRouter.post("/", async (req, res) => {
     res.send(recipe);
     console.log(recipe);
     console.log("Sent! with requested word", foodName);
-  }
-  catch (err) {
+  } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal server error" });
   }
 });
 
-
-
-
 function getRecipe(food) {
   return new Promise((resolve, reject) => {
     const youtube = google.youtube({
-      version: 'v3',
-      auth: process.env.API_KEY
+      version: "v3",
+      auth: process.env.API_KEY,
     });
 
     const searchParams = {
-      part: 'snippet',
+      part: "snippet",
       q: food,
-      type: 'video',
-      safeSearch: 'none',
-      maxResults: 10
+      type: "video",
+      safeSearch: "none",
+      maxResults: 10,
     };
 
-    youtube.search.list(searchParams)
-      .then(response => {
+    youtube.search
+      .list(searchParams)
+      .then((response) => {
         const recipe = [];
         const items = response.data.items;
         for (let i = 0; i < items.length; i++) {
@@ -72,8 +61,8 @@ function getRecipe(food) {
         // Resolve the promise for recipe List
         resolve(recipe);
       })
-      .catch(err => {
-        console.error('Error:', err);
+      .catch((err) => {
+        console.error("Error:", err);
         reject(err);
       });
   });
