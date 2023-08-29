@@ -132,3 +132,8 @@ input:focus {
   min-height: 5vh;
   cursor: pointer;
 }
+
+.video-container {
+  display:inline-grid;
+  margin:3em;
+}

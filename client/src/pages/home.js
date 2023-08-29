@@ -14,7 +14,7 @@ export const Home = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await getData();
+      const response = await getData(); // Gets video players 
       setVideos(response);
     } catch (err) {
       console.error(err);
@@ -27,7 +27,7 @@ export const Home = () => {
       axios
         .post("http://localhost:3001/videoInfo", { recipe: { value } })
         .then((response) => {
-          const data = response.data;
+          const data = response.data; // List of video ids
           resolve(data);
           console.log(data);
         })
