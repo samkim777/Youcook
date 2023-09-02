@@ -32,22 +32,6 @@ router.post("/login", async (req, res) => {
   if (!validPassword) {
     return res.status(400).json({ message: "User or password incorrect" });
   }
-  const token = jwt.sign({ id: user._id }, "secret");
-  res.json({ token, userID: user._id });
 });
 
 export { router as userRouter };
-
-// export const verifyToken = (req,res,next) => {
-//     const authHeader = req.headers.authorization;
-//     if (authHeader) {
-//         jwt.verify(authHeader,"secret", (err) => {
-//             if (err) {
-//                 return res.status(400);
-//             }
-//             next();
-//         })
-//     } else {
-//         res.sendStatus(401);
-//     }
-// }
