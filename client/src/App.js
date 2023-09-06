@@ -6,6 +6,8 @@ import { Auth } from "./pages/auth.js";
 import { SavedVideos } from "./pages/savedVideos.js";
 import { Registration } from "./pages/register";
 import { Navbar } from "./components/navbar";
+import { GoogleSignIn } from "./pages/googleSignIn.js";
+
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
+          <Route path="/google" element={<GoogleSignIn />}></Route>
           <Route path="/auth" element={<Auth />}></Route>
           <Route path="/" element={<Home />}></Route>
           <Route path="/video" element={<Youtubeplayer />}></Route>

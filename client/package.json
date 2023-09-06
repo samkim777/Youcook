@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "/auth",
   "dependencies": {
+    "@react-oauth/google": "^0.11.1",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "jest-webpack-resolver": "^0.3.0",
