@@ -1,9 +1,12 @@
 import React from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
 
 export const GoogleSignIn = () => {
+    const navigate = useNavigate();
     const handleSuccess = (credentialResponse) => {
         window.localStorage.setItem("userID", credentialResponse.credential);
+        navigate('/'); // Navigate home
     };
 
     const handleError = () => {
