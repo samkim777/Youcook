@@ -3,7 +3,7 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
 export const GoogleSignIn = () => {
     const handleSuccess = (credentialResponse) => {
-        console.log(credentialResponse);
+        window.localStorage.setItem("userID", credentialResponse.credential);
     };
 
     const handleError = () => {
