@@ -2,6 +2,7 @@ import { useState } from "react";
 import React from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { GoogleSignIn } from "./googleSignIn";
 
 export const Auth = () => {
   return <Login />;
@@ -29,15 +30,21 @@ export const Login = () => {
     }
   };
   return (
-    <Form
-      username={username}
-      setusername={setusername}
-      password={password}
-      setpassword={setpassword}
-      label="Login"
-      buttonlabel="Login"
-      onSubmit={onSubmit}
-    />
+    <div>
+      <Form
+        username={username}
+        setusername={setusername}
+        password={password}
+        setpassword={setpassword}
+        label="Login"
+        buttonlabel="Login"
+        onSubmit={onSubmit}
+      />
+      <div className="googleLogin">
+        Or Sign in using Google
+        <GoogleSignIn />
+      </div>
+    </div>
   );
 };
 

@@ -147,3 +147,9 @@ input:focus {
   display: inline-block;
   padding: 15px 32px;
 }
+
+.googleLogin {
+  font-family: Arial, Helvetica, sans-serif;
+ margin-left: 43%;
+ margin-top:5%;
+}
