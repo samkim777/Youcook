@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/auth",
+  "homepage": ".",
   "dependencies": {
     "@react-oauth/google": "^0.11.1",
     "@testing-library/user-event": "^13.5.0",
