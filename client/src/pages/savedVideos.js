@@ -8,7 +8,7 @@ export const SavedVideos = () => {
   const getVideos = async () => {
     try {
       const userid = userID();
-      const response = await axios.get("http://localhost:3001/saved", {
+      const response = await axios.get("https://youcook-server.vercel.app/saved", {
         params: { id: userid },
       });
       setVideoIds(response.data);
