@@ -25,7 +25,7 @@ export const Home = () => {
   const getData = () => {
     return new Promise((resolve, reject) => {
       axios
-        .post("http://localhost:3001/videoInfo", { recipe: { value } })
+        .post("https://youcook-e768.vercel.app/videoInfo", { recipe: { value } })
         .then((response) => {
           const data = response.data; // List of video ids
           resolve(data);

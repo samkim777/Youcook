@@ -7,7 +7,7 @@ export const Youtubeplayer = ({ videoIds }) => {
   const buttonHandler = (videoSrc) => (event) => {
     event.preventDefault();
     event.currentTarget.disabled = true;
-    axios.put("http://localhost:3001/videoInfo", { src: videoSrc, id: myid }); // Send save video request
+    axios.put("https://youcook-e768.vercel.app/videoInfo", { src: videoSrc, id: myid }); // Send save video request
 
     console.log("Current video source:", videoSrc);
   };
