@@ -17,7 +17,7 @@ app.use("/auth", userRouter);
 app.use("/saved", savedRouter);
 
 // Connect to DB
-mongoose.connect(process.env.CRED);
+mongoose.connect(process.env.MONGODB_URI);
 
 app.listen(3001, () => {
   console.log("Server started on port 3001");
