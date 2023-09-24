@@ -19,13 +19,16 @@ app.use("/saved", savedRouter);
 // Connect to DB
 mongoose.connect(process.env.MONGODB_URI);
 
-export default async function handler(req, res) {
-
+function handlePreflight(req, res, next) {
   if (req.method === 'OPTIONS') {
-    return res.status(200).send('ok');
+    // Respond to preflight requests with a 200 OK status
+    res.status(200).send('OK');
+  } else {
+    // If it's not a preflight request, continue to the next middleware
+    next();
   }
 }
-
+app.use(handlePreflight);
 
 app.listen(3001, () => {
   console.log("Server started on port 3001");
