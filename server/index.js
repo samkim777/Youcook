@@ -10,9 +10,12 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.options('*', cors()); //
-app.use(cors());
+app.use(cors({
+  origin: ["http://127.0.0.1:3000", "https://youcook.vercel.app"],
+  credentials: true,
+}));
 app.use(express.json());
+app.options('*', cors());
 app.use("/videoInfo", videoRouter);
 app.use("/auth", userRouter);
 app.use("/saved", savedRouter);
