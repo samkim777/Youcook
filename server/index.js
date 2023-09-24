@@ -21,13 +21,14 @@ mongoose.connect(process.env.MONGODB_URI);
 
 function handlePreflight(req, res, next) {
   if (req.method === 'OPTIONS') {
-    // Respond to preflight requests with a 200 OK status
-    res.status(200).send('OK');
+    // Respond to preflight requests with a 204 No Content status
+    res.status(204).end();
   } else {
     // If it's not a preflight request, continue to the next middleware
     next();
   }
 }
+
 app.use(handlePreflight);
 
 app.listen(3001, () => {
