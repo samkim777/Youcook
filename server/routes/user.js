@@ -33,7 +33,7 @@ router.post("/login", async (req, res) => {
     return res.status(400).json({ message: "User or password incorrect" });
   }
   const token = jwt.sign({ id: user._id }, "secret");
-  //res.json({ token, userID: user._id }); // Send unique user ID for local storage
+  res.json({ token, userID: user._id }); // Send unique user ID for local storage
 });
 
 export { router as userRouter };
