@@ -12,6 +12,7 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: ["http://127.0.0.1:3000", "https://youcook.vercel.app"],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 }));
 app.use(express.json());
