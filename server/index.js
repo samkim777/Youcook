@@ -9,14 +9,16 @@ import { savedRouter } from "./routes/savedVideos.js";
 dotenv.config();
 const app = express();
 
-// Middleware
-app.use(cors({
-  origin: ["http://127.0.0.1:3000", "https://youcook.vercel.app","https://youcook-e768.vercel.app"],
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+const corsConfig = {
+  origin: '',
   credentials: true,
-}));
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
+}
+
+// Middleware
+app.use(cors(corsConfig));
+app.options("", cors(corsConfig));
 app.use(express.json());
-app.options('*', cors());
 app.use("/videoInfo", videoRouter);
 app.use("/auth", userRouter);
 app.use("/saved", savedRouter);
